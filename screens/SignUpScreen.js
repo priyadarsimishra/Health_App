@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -8,6 +7,10 @@ import {
 } from "react-native";
 import firebase from "firebase";
 import firestore from "firebase/firestore";
+import Text from "../styles/Text";
+import colors from "../styles/Colors";
+// now we dont need react native's Text because return a Text
+// component from react native from the method anyways
 
 export default class SignUpScreen extends React.Component {
   state = {
@@ -71,7 +74,9 @@ export default class SignUpScreen extends React.Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
-        <Text>Sign Up Screen</Text>
+        <Text large heavy color={colors.black}>
+          Sign Up Screen
+        </Text>
         <TextInput
           style={styles.createNameInput}
           placeholder="Enter your name"

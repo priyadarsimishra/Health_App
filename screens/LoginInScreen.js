@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Text,
   View,
   StyleSheet,
   TextInput,
@@ -8,6 +7,8 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import firebase from "firebase";
+import Text from "../styles/Text";
+import colors from "../styles/Colors";
 
 export default class LoginInScreen extends React.Component {
   state = {
@@ -32,7 +33,9 @@ export default class LoginInScreen extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
-        <Text>Login In Screen</Text>
+        <Text large heavy color={colors.black}>
+          Login In Screen
+        </Text>
         <TextInput
           style={styles.usernameInput}
           placeholder="Email"

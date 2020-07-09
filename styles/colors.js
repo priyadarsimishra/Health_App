@@ -1,1 +1,3 @@
-const colors = [];
+export default colors = {
+  black: "#000",
+};

@@ -1,7 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import firebase from "firebase";
 import firestore from "firebase/firestore";
+import Text from "../styles/Text";
+import colors from "../styles/Colors";
 
 export default class ExtraInfoScreen extends React.Component {
   state = {
@@ -11,7 +13,9 @@ export default class ExtraInfoScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Welcome {this.state.name}!</Text>
+        <Text large heavy center color="black">
+          Welcome {this.state.name}!
+        </Text>
       </View>
     );
   }
