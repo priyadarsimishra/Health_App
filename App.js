@@ -1,27 +1,46 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginInScreen from "./screens/LoginInScreen";
-import SignUpScreen from "./screens/SignUpScreen";
-import ExtraInfoScreen from "./screens/ExtraInfoScreen";
+import AuthStackScreens from "./screens/AuthStack";
 import fire from "./Fire";
-
-const AuthStack = createStackNavigator();
+import HomeScreen from "./screens/HomeScreen";
+import firebase from "firebase";
 export default class App extends React.Component {
+  state = {
+    loggedIn: false,
+  };
+  // FIX THIS STUFF IT DOESNT DISPLAY displayName when user signs in(in sign-up screen)
+  constructor() {
+    super();
+    this.checkLoggedIn();
+  }
+  checkLoggedIn() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) this.setState({ loggedIn: true });
+      else this.setState({ loggedIn: false });
+    });
+  }
+  Stack = createStackNavigator();
   render() {
     return (
       <NavigationContainer>
-        <AuthStack.Navigator headerMode="none">
-          <AuthStack.Screen name="LoginIn" component={LoginInScreen} />
-          <AuthStack.Screen name="SignUp" component={SignUpScreen} />
-          <AuthStack.Screen name="ExtraInfo" component={ExtraInfoScreen} />
-        </AuthStack.Navigator>
+        <AuthStackScreens />
+        {/* {this.state.loggedIn ? (
+          <this.Stack.Navigator>
+            <this.Stack.Screen name="HomeScreen" component={HomeScreen} />
+          </this.Stack.Navigator>
+        ) : (
+          <AuthStackScreens />
+        )} */}
       </NavigationContainer>
-      // <View style={styles.container}>
-      //   <Text>Open up App.js to start working on your app!</Text>
-      // </View>
     );
+    // this.checkLoggedIn();
+    // return (
+    //   <NavigationContainer>
+    //     {this.state.loggedIn ? console.log("Logged in") :  />}
+    //   </NavigationContainer>
+    // );
   }
 }
 

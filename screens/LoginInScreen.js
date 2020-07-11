@@ -21,12 +21,10 @@ export default class LoginInScreen extends React.Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        console.log("User signed in");
+        this.props.navigation.navigate("HomeScreen");
       })
       .catch((error) => {
-        // console.log("This user does not exist");
         this.setState({ errorMessage: error.message });
-        // console.log(error.message);
       });
   }
   render() {
@@ -65,7 +63,7 @@ export default class LoginInScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signUpButton}
-          onPress={() => this.props.navigation.navigate("SignUp")}
+          onPress={() => this.props.navigation.navigate("SignUpScreen")}
         >
           <Text style={styles.signUpText}>Don't have an Account? Sign Up</Text>
         </TouchableOpacity>
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   signUpButton: {
-    backgroundColor: "#f00",
+    backgroundColor: colors.red,
     borderRadius: 20,
     padding: 10,
     marginTop: 15,
