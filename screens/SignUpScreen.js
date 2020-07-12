@@ -52,7 +52,7 @@ export default class SignUpScreen extends React.Component {
                   displayName: this.state.name,
                 })
                 .then(() => {
-                  this.props.navigation.navigate("HomeScreen");
+                  this.props.navigation.navigate("AllScreens");
                 });
             }
           })

@@ -13,6 +13,10 @@ export default class HomeScreen extends React.Component {
     super();
     this.setName();
   }
+  async setName() {
+    username = firebase.auth().currentUser.displayName;
+    this.state = { name: username };
+  }
   signOutUser() {
     firebase
       .auth()
@@ -25,25 +29,6 @@ export default class HomeScreen extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
-  async setName() {
-    username = firebase.auth().currentUser.displayName;
-    // const ref = firebase
-    //   .firestore()
-    //   .collection("users")
-    //   .doc(firebase.auth().currentUser.uid);
-
-    // ref.onSnapshot((name) => {
-    //   const list = [];
-    //   name.forEach((user) => {
-    //     list.push({
-    //       ...user.data(),
-    //       name: user.name,
-    //     });
-    //   });
-    //   console.log(list);
-    this.state = { name: username };
-    // });
   }
   render() {
     return (

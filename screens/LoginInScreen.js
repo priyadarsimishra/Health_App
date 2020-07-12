@@ -21,7 +21,7 @@ export default class LoginInScreen extends React.Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        this.props.navigation.navigate("HomeScreen");
+        this.props.navigation.navigate("AllScreens");
       })
       .catch((error) => {
         this.setState({ errorMessage: error.message });
@@ -32,7 +32,7 @@ export default class LoginInScreen extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
         <Text large heavy color={colors.black}>
-          Login In Screen
+          Login In
         </Text>
         <TextInput
           style={styles.usernameInput}

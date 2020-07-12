@@ -1,16 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import AuthStackScreens from "./screens/AuthStack";
+import TabContainer from "./screens/TabContainer";
+import SplashScreen from "./screens/SplashScreen";
+import LoginInScreen from "./screens/LoginInScreen";
+import SignUpScreen from "./screens/SignUpScreen";
 import fire from "./Fire";
-import HomeScreen from "./screens/HomeScreen";
 import firebase from "firebase";
 export default class App extends React.Component {
   state = {
     loggedIn: false,
   };
-  // FIX THIS STUFF IT DOESNT DISPLAY displayName when user signs in(in sign-up screen)
   constructor() {
     super();
     this.checkLoggedIn();
@@ -21,26 +22,18 @@ export default class App extends React.Component {
       else this.setState({ loggedIn: false });
     });
   }
-  Stack = createStackNavigator();
   render() {
+    const Stack = createStackNavigator();
     return (
       <NavigationContainer>
-        <AuthStackScreens />
-        {/* {this.state.loggedIn ? (
-          <this.Stack.Navigator>
-            <this.Stack.Screen name="HomeScreen" component={HomeScreen} />
-          </this.Stack.Navigator>
-        ) : (
-          <AuthStackScreens />
-        )} */}
+        <Stack.Navigator headerMode="none">
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginInScreen} />
+          <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+          <Stack.Screen name="AllScreens" component={TabContainer} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
-    // this.checkLoggedIn();
-    // return (
-    //   <NavigationContainer>
-    //     {this.state.loggedIn ? console.log("Logged in") :  />}
-    //   </NavigationContainer>
-    // );
   }
 }
 

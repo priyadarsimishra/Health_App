@@ -12,8 +12,7 @@ export default TextStyle = ({ ...props }) => {
 // also add a font-family when ready
 // you can edit the font sizes as you wish
 const Text = styled.Text`
-  color: ${(props) => props.color ?? "#ffffff"};
-
+  color: ${(props) => props.color ?? "#000000"};
   ${({ title, large, medium, small }) => {
     switch (true) {
       case title:
@@ -35,7 +34,7 @@ const Text = styled.Text`
       case bold:
         return `font-weight: 600`;
       case heavy:
-        return `font-weight: 700`;
+        return `font-weight: 800`;
       default:
         return `font-weight: 400`;
     }
