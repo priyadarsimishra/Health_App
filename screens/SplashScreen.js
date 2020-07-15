@@ -1,19 +1,27 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  Button,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import styled from "styled-components/native";
 import Text from "../styles/Text";
 import colors from "../styles/Colors";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Font from "expo-font";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default class SplashScreen extends React.Component {
   render() {
     return (
-      <LinearGradient
-        colors={[colors.pink, colors.lightpurple]}
-        style={{ flex: 1 }}
+      <ImageBackground
+        source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/splashbg.png")}
+        style={styles.container}
       >
         <SafeAreaView style={styles.container}>
           <View style={styles.header}>
@@ -32,17 +40,24 @@ export default class SplashScreen extends React.Component {
               Learn about your body. Learn about Food. Keep your body strong and
               healthy
             </Text>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate("LoginScreen")}
-            >
-              <Text heavy large style={styles.btn_text}>
-                Get Started
-              </Text>
-            </TouchableOpacity>
+            <View style={styles.buttonContainer}>
+              <LinearGradient
+                colors={[colors.lightGreen, colors.cyan]}
+                style={styles.button}
+              >
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => this.props.navigation.navigate("LoginScreen")}
+                >
+                  <Text heavy large style={styles.btn_text}>
+                    Get Started
+                  </Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
           </Animatable.View>
         </SafeAreaView>
-      </LinearGradient>
+      </ImageBackground>
     );
   }
 }
@@ -53,6 +68,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 350,
     height: 350,
+    borderRadius: 300,
   },
   header: {
     flex: 2,
@@ -61,7 +77,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1,
-    padding: 30,
+    paddingRight: 30,
+    paddingLeft: 30,
     // fontFamily: require("../fonts/Roboto-Black.ttf"),
   },
   title: {
@@ -70,14 +87,24 @@ const styles = StyleSheet.create({
   desc: {
     color: colors.white,
   },
-  button: {
-    marginTop: 50,
-    width: 200,
-    height: 50,
-    backgroundColor: colors.white,
-    borderRadius: 25,
+  buttonContainer: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 60,
+    shadowOffset: { width: 2, height: 20 },
+    shadowColor: colors.black,
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
   },
-  btn_text: {},
+  button: {
+    width: 200,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+  },
+  btn_text: {
+    color: "#0000FF",
+  },
 });

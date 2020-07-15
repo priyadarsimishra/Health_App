@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
       .then(() => {
         this.setState({ name: "" });
 
-        this.props.navigation.navigate("LoginScreen");
+        this.props.navigation.navigate("SplashScreen");
       })
       .catch((error) => {
         console.log(error);

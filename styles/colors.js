@@ -5,6 +5,8 @@ export default colors = {
   pink: "#F06292",
   lightpurple: "#E1BEE7",
   grey: "#607D8B",
-  cyan: "#4DD0E1",
+  cyan: "#99FFFF",
   white: "#fff",
+  shadow: "#8a795d",
+  lightGreen: "#33FFCC",
 };

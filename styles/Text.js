@@ -13,10 +13,12 @@ export default TextStyle = ({ ...props }) => {
 // you can edit the font sizes as you wish
 const Text = styled.Text`
   color: ${(props) => props.color ?? "#000000"};
-  ${({ title, large, medium, small }) => {
+  ${({ title, large, medium, small, huge }) => {
     switch (true) {
       case title:
         return `font-size: 32px`;
+      case huge:
+        return `font-size: 48px`;
       case large:
         return `font-size: 20px`;
       case medium:

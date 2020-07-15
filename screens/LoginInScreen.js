@@ -5,10 +5,15 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Image,
+  SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import firebase from "firebase";
 import Text from "../styles/Text";
 import colors from "../styles/Colors";
+import * as Animatable from "react-native-animatable";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default class LoginInScreen extends React.Component {
   state = {
@@ -29,45 +34,97 @@ export default class LoginInScreen extends React.Component {
   }
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
-        <Text style={{ color: "red" }}>{this.state.errorMessage}</Text>
-        <Text large heavy color={colors.black}>
-          Login In
-        </Text>
-        <TextInput
-          style={styles.usernameInput}
-          placeholder="Email"
-          autoCapitalize="none"
-          onChangeText={(email) => {
-            this.setState({ email: email });
-            this.setState({ errorMessage: "" });
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/splashbg.png")}
+          style={styles.headerImage}
+          imageStyle={{
+            borderRadius: 500,
+            width: 500,
+            height: 500,
+            marginTop: -280,
+            marginLeft: -43,
           }}
-          value={this.state.email}
-        />
-        <TextInput
-          style={styles.passwordInput}
-          placeholder="Password"
-          autoCapitalize="none"
-          secureTextEntry={true}
-          onChangeText={(password) => {
-            this.setState({ password: password });
-            this.setState({ errorMessage: "" });
-          }}
-          value={this.state.password}
-        />
-        <TouchableOpacity
-          style={styles.loginInButton}
-          onPress={() => this.signInUser()}
         >
-          <Text style={styles.loginInText}>Login In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.signUpButton}
-          onPress={() => this.props.navigation.navigate("SignUpScreen")}
-        >
-          <Text style={styles.signUpText}>Don't have an Account? Sign Up</Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+          <Animatable.View style={styles.header} animation="slideInDown">
+            <Image
+              animation="bounceIn"
+              style={styles.logo}
+              source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/loginScreen.png")}
+            />
+          </Animatable.View>
+        </ImageBackground>
+        <Animatable.View style={styles.middle} animation="zoomIn">
+          <KeyboardAvoidingView
+            style={styles.inputContainer}
+            behavior="padding"
+          >
+            <Text style={{ color: colors.red }}>{this.state.errorMessage}</Text>
+            <Text title heavy color={colors.black}>
+              Login
+            </Text>
+            <Text bold large color={colors.black} style={styles.emailtext}>
+              Email
+            </Text>
+            <View>
+              <FontAwesome
+                name="envelope"
+                size={20}
+                color={colors.black}
+                style={styles.envelope}
+              />
+              <TextInput
+                style={styles.usernameInput}
+                placeholder=""
+                autoCapitalize="none"
+                onChangeText={(email) => {
+                  this.setState({ email: email });
+                  this.setState({ errorMessage: "" });
+                }}
+                value={this.state.email}
+              />
+              <Text bold large color={colors.black} style={styles.passwordtext}>
+                Password
+              </Text>
+            </View>
+            <View>
+              <FontAwesome
+                name="lock"
+                size={28}
+                color={colors.black}
+                style={styles.lock}
+              />
+              <TextInput
+                style={styles.passwordInput}
+                placeholder=""
+                autoCapitalize="none"
+                secureTextEntry={true}
+                onChangeText={(password) => {
+                  this.setState({ password: password });
+                  this.setState({ errorMessage: "" });
+                }}
+                value={this.state.password}
+              />
+            </View>
+
+            <TouchableOpacity
+              style={styles.loginInButton}
+              onPress={() => this.signInUser()}
+            >
+              <Text style={styles.loginInText}>Login In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.signUpButton}
+              onPress={() => this.props.navigation.navigate("SignUpScreen")}
+            >
+              <Text style={styles.signUpText}>
+                Don't have an Account? Sign Up
+              </Text>
+            </TouchableOpacity>
+            <View style={styles.footer}></View>
+          </KeyboardAvoidingView>
+        </Animatable.View>
+      </View>
     );
   }
 }
@@ -75,23 +132,65 @@ export default class LoginInScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
+  },
+  inputContainer: {
+    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    marginTop: -180,
+  },
+  header: {
+    flex: 1,
+  },
+  headerImage: {
+    flex: 1,
+  },
+  middle: {
+    flex: 1,
+  },
+  footer: {
+    flex: 1,
+  },
+  emailtext: {
+    marginRight: 250,
+    top: 16,
+  },
+  passwordtext: {
+    marginRight: 212,
+    top: 25,
+  },
+  logo: {
+    width: 125,
+    height: 125,
+    borderRadius: 300,
+    borderWidth: 6,
+    borderColor: colors.lightpurple,
+    marginLeft: 140,
+    marginTop: 150,
   },
   usernameInput: {
-    marginTop: 20,
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 18,
     borderColor: "#000",
     padding: 10,
+    paddingLeft: 35,
     width: 300,
   },
   passwordInput: {
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 18,
     borderColor: "#000",
     padding: 10,
+    paddingLeft: 35,
     width: 300,
-    marginTop: 20,
+  },
+  envelope: {
+    top: 29,
+    left: 10,
+  },
+  lock: {
+    top: 34,
+    left: 10,
   },
   signUpButton: {
     backgroundColor: colors.red,
