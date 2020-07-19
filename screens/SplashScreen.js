@@ -13,9 +13,6 @@ import Text from "../styles/Text";
 import colors from "../styles/Colors";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import * as Font from "expo-font";
-import { FontAwesome } from "@expo/vector-icons";
-
 export default class SplashScreen extends React.Component {
   render() {
     return (
@@ -32,10 +29,10 @@ export default class SplashScreen extends React.Component {
             />
           </View>
           <Animatable.View style={styles.footer} animation="pulse">
-            <Text heavy large title style={styles.title}>
+            <Text heavy huge style={styles.title}>
               Health App
             </Text>
-            <Text large bold style={styles.desc}>
+            <Text large heavy style={styles.desc}>
               {/* TO BE CHANGED */}
               Learn about your body. Learn about Food. Keep your body strong and
               healthy
@@ -79,10 +76,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingRight: 30,
     paddingLeft: 30,
-    // fontFamily: require("../fonts/Roboto-Black.ttf"),
+    marginTop: -80,
   },
   title: {
     color: colors.white,
+    // fontFamily: "Roboto_900Black",
   },
   desc: {
     color: colors.white,
@@ -91,20 +89,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 60,
+    marginTop: 50,
     shadowOffset: { width: 2, height: 20 },
     shadowColor: colors.black,
     shadowOpacity: 0.3,
     shadowRadius: 1,
   },
   button: {
-    width: 200,
+    width: 300,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 25,
   },
   btn_text: {
-    color: "#0000FF",
+    color: "#3300FF",
+    fontSize: 25,
   },
 });
