@@ -1,10 +1,15 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Button } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import firebase from "firebase";
 import firestore from "firebase/firestore";
 import Text from "../styles/Text";
 import colors from "../styles/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -21,13 +26,22 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text title heavy center color={colors.black} style={styles.dashboard}>
-          Dashboard
-        </Text>
-        <Text semilarge heavy style={styles.activityText}>
-          Activity
-        </Text>
-        <TouchableOpacity style={styles.activityCard}></TouchableOpacity>
+        <ScrollView>
+          <Text title heavy left color={colors.black} style={styles.dashboard}>
+            Dashboard
+          </Text>
+          <Text extralarge heavy color={colors.blue} style={styles.titleText}>
+            Activity
+          </Text>
+          <TouchableOpacity
+            style={styles.activityCard}
+            onPress={() => this.props.navigation.navigate("DemoScreen")}
+          ></TouchableOpacity>
+          <Text extralarge heavy color={colors.orange} style={styles.titleText}>
+            Nutrition
+          </Text>
+          <TouchableOpacity style={styles.nutritionCard}></TouchableOpacity>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -35,24 +49,38 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
+    backgroundColor: colors.white,
   },
   dashboard: {
     paddingLeft: 20,
-    textAlign: "left",
   },
-  activityText: {
+  titleText: {
     marginTop: 20,
     marginLeft: 25,
     marginBottom: -18,
   },
   activityCard: {
     margin: 20,
-    borderColor: colors.black,
+    borderColor: colors.blue,
+    backgroundColor: colors.blue,
     borderWidth: 3,
-    height: 300,
+    height: 350,
     borderRadius: 25,
+    shadowOffset: { width: 3, height: 15 },
+    shadowColor: colors.shadow,
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+  },
+  nutritionCard: {
+    margin: 20,
+    borderColor: colors.orange,
+    backgroundColor: colors.orange,
+    borderWidth: 3,
+    height: 350,
+    borderRadius: 25,
+    shadowOffset: { width: 3, height: 15 },
+    shadowColor: colors.shadow,
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
   },
 });

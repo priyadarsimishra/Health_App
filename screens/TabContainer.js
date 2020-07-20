@@ -1,50 +1,58 @@
 import React from "react";
 import ForumScreen from "./ForumScreen";
 import ProfileScreen from "./ProfileScreen";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from "react-native-vector-icons/Ionicons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import HomeScreen from "./HomeScreen";
+import HomeStackScreen from "./HomeScreenStack";
+import colors from "../styles/Colors";
 
 const Tab = createMaterialBottomTabNavigator();
-const MainTabScreen = () => {
+export default function MainTabScreen() {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      activeColor="#e91e63"
-      style={{ backgroundColor: "tomato" }}
-    >
+    <Tab.Navigator initialRouteName="Home" activeTintColor="#fff">
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStackScreen}
         options={{
           tabBarLabel: "Home",
+          tabBarColor: colors.red,
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
+            <Icon name="ios-home" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="Forums"
+        name="Forum"
         component={ForumScreen}
         options={{
           tabBarLabel: "Forum",
+          tabBarColor: colors.pink,
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={26} />
+            <Icon name="ios-notifications" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
+        name="Example"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarColor: colors.lightpurple,
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+      {/* <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <Icon name="ios-person" color={color} size={26} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
-};
-
-export default MainTabScreen;
+}

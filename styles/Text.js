@@ -1,23 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
 import { AppLoading } from "expo";
-// import {
-//   useFonts,
-//   AlegreyaSans_100Thin,
-//   AlegreyaSans_100Thin_Italic,
-//   AlegreyaSans_300Light,
-//   AlegreyaSans_300Light_Italic,
-//   AlegreyaSans_400Regular,
-//   AlegreyaSans_400Regular_Italic,
-//   AlegreyaSans_500Medium,
-//   AlegreyaSans_500Medium_Italic,
-//   AlegreyaSans_700Bold,
-//   AlegreyaSans_700Bold_Italic,
-//   AlegreyaSans_800ExtraBold,
-//   AlegreyaSans_800ExtraBold_Italic,
-//   AlegreyaSans_900Black,
-//   AlegreyaSans_900Black_Italic,
-// } from "@expo-google-fonts/alegreya-sans";
 import {
   useFonts,
   NunitoSans_200ExtraLight,
@@ -76,14 +59,14 @@ const Text = styled.Text`
         return `font-size: 36px`;
       case huge:
         return `font-size: 60px`;
-      case semilarge:
-        return `font-size: 28px`;
       case large:
+        return `font-size: 28px`;
+      case semilarge:
         return `font-size: 20px`;
       case medium:
         return `font-size: 16px`;
       case small:
-        return `font-size: 13px`;
+        return `font-size: 12px`;
       default:
         return `font-size: 14px`;
     }

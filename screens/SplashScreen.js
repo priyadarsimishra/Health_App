@@ -29,10 +29,10 @@ export default class SplashScreen extends React.Component {
             />
           </View>
           <Animatable.View style={styles.footer} animation="pulse">
-            <Text heavy huge style={styles.title}>
+            <Text heavy title style={styles.title}>
               Health App
             </Text>
-            <Text large heavy style={styles.desc}>
+            <Text semilarge heavy style={styles.desc}>
               {/* TO BE CHANGED */}
               Learn about your body. Learn about Food. Keep your body strong and
               healthy
@@ -46,7 +46,7 @@ export default class SplashScreen extends React.Component {
                   style={styles.button}
                   onPress={() => this.props.navigation.navigate("LoginScreen")}
                 >
-                  <Text heavy large style={styles.btn_text}>
+                  <Text heavy semilarge style={styles.btn_text}>
                     Get Started
                   </Text>
                 </TouchableOpacity>

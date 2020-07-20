@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Keyboard,
   KeyboardAvoidingView,
   Image,
   ImageBackground,
@@ -63,17 +64,16 @@ export default class LoginInScreen extends React.Component {
             style={styles.inputContainer}
             behavior="padding"
           >
-            <Text extralarge heavy color={colors.black}>
+            <Text extralarge heavy center color={colors.black}>
               Sign In
             </Text>
             <Text medium light color={colors.grey}>
               Please sign in to continue
             </Text>
-            <Text bold medium color={colors.red}>
+            <Text small bold center color={colors.red} style={styles.error}>
               {this.state.errorMessage}
             </Text>
-
-            <Text bold large color={colors.black} style={styles.emailtext}>
+            <Text bold semilarge color={colors.black} style={styles.emailtext}>
               Email
             </Text>
             <View>
@@ -93,7 +93,12 @@ export default class LoginInScreen extends React.Component {
                 }}
                 value={this.state.email}
               />
-              <Text bold large color={colors.black} style={styles.passwordtext}>
+              <Text
+                bold
+                semilarge
+                color={colors.black}
+                style={styles.passwordtext}
+              >
                 Password
               </Text>
             </View>
@@ -115,23 +120,15 @@ export default class LoginInScreen extends React.Component {
                 }}
                 value={this.state.password}
               />
-              <TouchableOpacity onPress={() => this.changeSecureText()}>
-                {this.state.secureText ? (
-                  <Feather
-                    name="eye-off"
-                    size={24}
-                    color={colors.black}
-                    style={styles.eye}
-                  />
-                ) : (
-                  <Feather
-                    name="eye"
-                    size={24}
-                    color={colors.black}
-                    style={styles.eye}
-                  />
-                )}
-              </TouchableOpacity>
+              <Animatable.View style={styles.eye} animation="bounceIn">
+                <TouchableOpacity onPress={() => this.changeSecureText()}>
+                  {this.state.secureText ? (
+                    <Feather name="eye-off" size={24} color={colors.black} />
+                  ) : (
+                    <Feather name="eye" size={24} color={colors.black} />
+                  )}
+                </TouchableOpacity>
+              </Animatable.View>
             </View>
             <LinearGradient
               colors={[colors.pink, colors.red]}
@@ -141,7 +138,7 @@ export default class LoginInScreen extends React.Component {
                 style={styles.loginInButton}
                 onPress={() => this.signInUser()}
               >
-                <Text heavy medium style={styles.loginInText}>
+                <Text heavy medium center style={styles.loginInText}>
                   Login
                 </Text>
               </TouchableOpacity>
@@ -214,8 +211,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 18,
     borderColor: colors.black,
-    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     paddingLeft: 35,
+    paddingRight: 35,
     width: 300,
     marginTop: -9,
   },
@@ -247,9 +246,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   loginInText: {
-    textAlign: "center",
     marginLeft: -5,
     fontSize: 16,
     color: colors.white,
+  },
+  error: {
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 });

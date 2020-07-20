@@ -8,5 +8,6 @@ export default colors = {
   cyan: "#99FFFF",
   white: "#fff",
   shadow: "#8a795d",
+  orange: "#FFC107",
   lightGreen: "#33FFCC",
 };

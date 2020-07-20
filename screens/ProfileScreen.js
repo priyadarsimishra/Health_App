@@ -1,8 +1,20 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import firebase from "firebase";
+import Text from "../styles/Text";
 
 export default class ProfileScreen extends React.Component {
+  state = {
+    name: firebase.auth().currentUser.displayName,
+  };
+  constructor() {
+    super();
+    this.setName();
+  }
+  async setName() {
+    username = firebase.auth().currentUser.displayName;
+    this.state = { name: username };
+  }
   signOutUser() {
     firebase
       .auth()
@@ -18,7 +30,9 @@ export default class ProfileScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Profile Screen</Text>
+        <Text large heavy>
+          Hello {this.state.name}
+        </Text>
         <Button title="Sign Out" onPress={() => this.signOutUser()} />
       </View>
     );
