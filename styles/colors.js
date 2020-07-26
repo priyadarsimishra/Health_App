@@ -1,5 +1,6 @@
 export default colors = {
   black: "#2C2C2C",
+  trueBlue: "#0000ff",
   blue: "#42A5F5",
   red: "#DC143C",
   pink: "#FF69B4",
@@ -9,5 +10,6 @@ export default colors = {
   white: "#fff",
   shadow: "#8a795d",
   orange: "#FFC107",
+  redOrange: "#FF4500",
   lightGreen: "#33FFCC",
 };

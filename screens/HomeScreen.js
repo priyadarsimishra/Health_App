@@ -3,6 +3,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  View,
   Button,
   TouchableOpacity,
 } from "react-native";
@@ -26,7 +27,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <View>
           <Text title heavy left color={colors.black} style={styles.dashboard}>
             Dashboard
           </Text>
@@ -41,7 +42,7 @@ export default class HomeScreen extends React.Component {
             Nutrition
           </Text>
           <TouchableOpacity style={styles.nutritionCard}></TouchableOpacity>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }

@@ -51,7 +51,16 @@ export default TextStyle = ({ ...props }) => {
 
 const Text = styled.Text`
   color: ${(props) => props.color ?? "#000000"};
-  ${({ title, extralarge, semilarge, large, medium, small, huge }) => {
+  ${({
+    title,
+    extralarge,
+    semilarge,
+    smallestLarge,
+    large,
+    medium,
+    small,
+    huge,
+  }) => {
     switch (true) {
       case title:
         return `font-size: 48px`;
@@ -61,6 +70,8 @@ const Text = styled.Text`
         return `font-size: 60px`;
       case large:
         return `font-size: 28px`;
+      case smallestLarge:
+        return `font-size:18px`;
       case semilarge:
         return `font-size: 20px`;
       case medium:

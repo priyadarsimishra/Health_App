@@ -12,24 +12,36 @@ export default class App extends React.Component {
   state = {
     loggedIn: false,
   };
-  // componentDidMount() {
-  //   this.checkLoggedIn();
-  // }
-  // checkLoggedIn() {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) this.setState({ loggedIn: true });
-  //     else this.setState({ loggedIn: false });
-  //   });
-  // }
+  componentDidMount() {
+    this.checkLoggedIn();
+  }
+  checkLoggedIn() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) this.setState({ loggedIn: true });
+      else this.setState({ loggedIn: false });
+    });
+  }
   render() {
     const Stack = createStackNavigator();
     return (
       <NavigationContainer>
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          <Stack.Screen name="LoginScreen" component={SignInScreen} />
+          <Stack.Screen
+            name="LoginScreen"
+            component={SignInScreen}
+            options={{
+              gestureEnabled: false,
+            }}
+          />
           <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-          <Stack.Screen name="AllScreens" component={TabContainer} />
+          <Stack.Screen
+            name="AllScreens"
+            component={TabContainer}
+            options={{
+              gestureEnabled: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );

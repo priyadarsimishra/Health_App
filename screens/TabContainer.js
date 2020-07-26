@@ -33,7 +33,7 @@ export default function MainTabScreen() {
         }}
       />
       <Tab.Screen
-        name="Example"
+        name="Profile"
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
@@ -43,16 +43,17 @@ export default function MainTabScreen() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Profile"
+      <Tab.Screen
+        name="Example"
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
+          tabBarColor: colors.black,
           tabBarIcon: ({ color }) => (
             <Icon name="ios-person" color={color} size={26} />
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 }
