@@ -5,7 +5,7 @@ import colors from "../styles/Colors";
 import styled from "styled-components";
 import timeperiod from "../data/timePeriod";
 import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
-
+import Graph from "../screens/DemoGraph";
 export default class StepDisplay extends React.Component {
   state = {
     selectedPeriod: "Today",
@@ -76,7 +76,8 @@ export default class StepDisplay extends React.Component {
             {this.state.selectedPeriod === "Year"
               ? this.displayText(this.state.selectedPeriod)
               : null}
-            <View horizontal={true} style={styles.graph}>
+            <Graph style={styles.graph} />
+            {/* <ScrollView horizontal={true} style={styles.graph}>
               <VictoryChart
                 theme={VictoryTheme.material}
                 domainPadding={25}
@@ -107,7 +108,7 @@ export default class StepDisplay extends React.Component {
                   }}
                 />
               </VictoryChart>
-            </View>
+            </ScrollView> */}
           </View>
         </ScrollView>
       </SafeAreaView>
