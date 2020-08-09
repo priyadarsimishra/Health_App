@@ -4,13 +4,18 @@ import Text from "../styles/Text";
 import colors from "../styles/Colors";
 import styled from "styled-components";
 import timeperiod from "../data/timePeriod";
-import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
-import Graph from "../screens/DemoGraph";
+import WeekGraph from "./WeekGraph";
+import DayGraph from "./DayGraph";
+import MonthGraph from "./MonthGraph";
+import YearGraph from "./YearGraph";
 export default class StepDisplay extends React.Component {
-  state = {
-    selectedPeriod: "Today",
-    steps: 2200,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedPeriod: "Today",
+      steps: 2200,
+    };
+  }
   changeSelectedPeriod = (period) => {
     this.setState({ selectedPeriod: period });
   };
@@ -29,6 +34,10 @@ export default class StepDisplay extends React.Component {
         <PeriodText semilarge bold>
           {category}
         </PeriodText>
+        {category === "Today" ? <DayGraph style={styles.graph} /> : null}
+        {category === "Week" ? <WeekGraph style={styles.graph} /> : null}
+        {category === "Month" ? <MonthGraph style={styles.graph} /> : null}
+        {category === "Year" ? <YearGraph style={styles.graph} /> : null}
       </PeriodDetails>
     );
   };
@@ -76,39 +85,6 @@ export default class StepDisplay extends React.Component {
             {this.state.selectedPeriod === "Year"
               ? this.displayText(this.state.selectedPeriod)
               : null}
-            <Graph style={styles.graph} />
-            {/* <ScrollView horizontal={true} style={styles.graph}>
-              <VictoryChart
-                theme={VictoryTheme.material}
-                domainPadding={25}
-                width={450}
-                height={450}
-              >
-                <VictoryBar
-                  animate={{
-                    duration: 2000,
-                    onLoad: { duration: 1000 },
-                    easing: "circleIn",
-                  }}
-                  categories={{
-                    x: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-                  }}
-                  data={[
-                    { x: "Mon", y: 20 },
-                    { x: "Tue", y: 80 },
-                    { x: "Wed", y: 400 },
-                    { x: "Thu", y: 30 },
-                    { x: "Fri", y: 40 },
-                    { x: "Sat", y: 20 },
-                    { x: "Sun", y: 10 },
-                  ]}
-                  barRatio={1}
-                  style={{
-                    data: { fill: colors.orange },
-                  }}
-                />
-              </VictoryChart>
-            </ScrollView> */}
           </View>
         </ScrollView>
       </SafeAreaView>

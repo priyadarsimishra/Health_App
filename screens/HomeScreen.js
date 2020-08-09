@@ -14,7 +14,7 @@ import colors from "../styles/Colors";
 
 export default class HomeScreen extends React.Component {
   state = {
-    name: firebase.auth().currentUser.displayName,
+    name: "",
   };
   constructor() {
     super();
@@ -27,22 +27,35 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View>
-          <Text title heavy left color={colors.black} style={styles.dashboard}>
-            Dashboard
-          </Text>
-          <Text extralarge heavy color={colors.blue} style={styles.titleText}>
-            Activity
-          </Text>
-          <TouchableOpacity
-            style={styles.activityCard}
-            onPress={() => this.props.navigation.navigate("DemoScreen")}
-          ></TouchableOpacity>
-          <Text extralarge heavy color={colors.orange} style={styles.titleText}>
-            Nutrition
-          </Text>
-          <TouchableOpacity style={styles.nutritionCard}></TouchableOpacity>
-        </View>
+        <ScrollView>
+          <View>
+            <Text
+              title
+              heavy
+              left
+              color={colors.black}
+              style={styles.dashboard}
+            >
+              Dashboard
+            </Text>
+            <Text extralarge heavy color={colors.blue} style={styles.titleText}>
+              Activity
+            </Text>
+            <TouchableOpacity
+              style={styles.activityCard}
+              onPress={() => this.props.navigation.navigate("DemoScreen")}
+            ></TouchableOpacity>
+            <Text
+              extralarge
+              heavy
+              color={colors.orange}
+              style={styles.titleText}
+            >
+              Nutrition
+            </Text>
+            <TouchableOpacity style={styles.nutritionCard}></TouchableOpacity>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }

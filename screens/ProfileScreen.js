@@ -1,72 +1,125 @@
 import React from "react";
 import {
-  View,
   StyleSheet,
-  Button,
   SafeAreaView,
   StatusBar,
-  TouchableOpacity,
+  ScrollView,
+  View,
 } from "react-native";
 import firebase from "firebase";
 import Text from "../styles/Text";
 import styled from "styled-components";
 import colors from "../styles/Colors";
+import { auth, database } from "../Fire";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 
 export default class ProfileScreen extends React.Component {
-  state = {
-    name: "",
-  };
   constructor() {
     super();
-    this.setName();
+    this.state = {
+      uid: "",
+      name: "",
+      weight: "",
+      age: "",
+      bio: "",
+      followers: "",
+      following: "",
+      posts: "",
+    };
   }
-  async setName() {
-    username = firebase.auth().currentUser.displayName;
-    this.state = { name: username };
+
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ uid: user.uid });
+        this.getUserData();
+      } else {
+      }
+    });
   }
-  signOutUser() {
-    firebase
-      .auth()
+  signOutUser = () => {
+    auth
       .signOut()
       .then(() => {
         this.setState({ name: " " });
-        this.props.navigation.navigate("SplashScreen");
+        this.props.changeLoggedIn;
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+  getUserData = () => {
+    database
+      .collection("users")
+      .doc(this.state.uid)
+      .get()
+      .then((document) => {
+        const userData = document.data();
+        this.setState({
+          name: userData.name,
+          weight: userData.weight,
+          age: userData.age,
+          posts: userData.posts,
+          following: userData.following,
+          followers: userData.followers,
+          bio: userData.bio,
+        });
+      });
+  };
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <View style={styles.signOutButton}>
-          <LinearGradient
-            colors={[colors.pink, colors.lightpurple]}
-            style={styles.signOutButton}
-          >
-            <TouchableOpacity
-              title="Sign Out"
-              onPress={() => this.signOutUser()}
-            >
-              <Feather
-                name="arrow-up-circle"
-                size={24}
-                color={colors.white}
-                style={styles.up}
-              />
-              <Text small heavy right style={styles.signOut}>
-                Sign Out
+        <ScrollView>
+          <SignOutButton onPress={() => this.signOutUser()}>
+            <FontAwesome
+              name="chevron-circle-left"
+              size={30}
+              color="black"
+              style={styles.up}
+            />
+            <SignOutText center heavy medium>
+              Sign Out
+            </SignOutText>
+          </SignOutButton>
+          <ProfileImage source={require("../assets/healthlogo.png")} />
+          <Name large heavy>
+            {this.state.name}
+          </Name>
+          <ProfileStatus>
+            <Text style={styles.detailsText} heavy large center>
+              Details
+            </Text>
+            <View>
+              <Text bold center style={styles.bioText}>
+                {this.state.bio.length >= 320
+                  ? this.state.bio.substring(0, 317) + "..."
+                  : this.state.bio}
               </Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-        <ProfileImage source={require("../assets/healthlogo.png")} />
-        <Name large bold>
-          {this.state.name}
-        </Name>
+            </View>
+            <View style={styles.profileStatus}>
+              <Text semilarge color={colors.redOrange} bold>
+                Weight:{" "}
+                <Text heavy large>
+                  {this.state.weight} lbs
+                </Text>{" "}
+                Age:{" "}
+                <Text heavy large>
+                  {this.state.age}
+                </Text>
+              </Text>
+            </View>
+
+            <View style={styles.userSocialDetails}>
+              <Text color={colors.redOrange} bold>
+                Followers: <Text heavy>{this.state.followers}</Text> |
+                Following: <Text heavy>{this.state.following}</Text> | Posts:{" "}
+                <Text heavy>{this.state.posts}</Text>
+              </Text>
+            </View>
+          </ProfileStatus>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -76,20 +129,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.red,
   },
-  signOutButton: {
-    margin: 4,
-    width: 120,
-    borderRadius: 10,
-    borderColor: colors.white,
+  detailsText: {
+    textShadowColor: colors.grey,
+    marginRight: 18,
   },
-  signOut: {
-    padding: 5,
-    fontSize: 20,
-    color: colors.white,
-    marginTop: -33,
+  userSocialDetails: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 70,
+    marginLeft: -20,
   },
-  up: {
-    marginTop: 10,
+  profileStatus: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: -30,
+  },
+  bioText: {
+    textAlign: "center",
+    marginLeft: -10,
   },
 });
 
@@ -112,4 +171,29 @@ const Name = styled(Text)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 8px;
+`;
+
+const SignOutButton = styled.TouchableOpacity`
+  display: flex;
+  background-color: #fff;
+  width: 40%;
+  padding: 5px;
+  border-radius: 12px;
+  margin: 5px;
+  margin-left: 10px;
+`;
+const SignOutText = styled(Text)`
+  margin-top: -31px;
+  font-size: 24px;
+  margin-left: 16px;
+`;
+const ProfileStatus = styled.View`
+  background-color: #fff;
+  margin-top: 20px;
+  width: auto;
+  height: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  padding: 10px;
 `;

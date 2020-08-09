@@ -10,6 +10,7 @@ import {
   ImageBackground,
 } from "react-native";
 import firebase from "firebase";
+import { auth } from "../Fire";
 import Text from "../styles/Text";
 import colors from "../styles/Colors";
 import * as Animatable from "react-native-animatable";
@@ -17,23 +18,26 @@ import { FontAwesome, Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default class LoginInScreen extends React.Component {
-  state = {
-    email: "",
-    password: "",
-    errorMessage: "",
-    secureText: true,
-  };
-  signInUser() {
-    firebase
-      .auth()
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      errorMessage: "",
+      secureText: true,
+    };
+  }
+  signInUser = () => {
+    auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        this.props.navigation.navigate("AllScreens");
+        // this.props.navigation.navigate("AllScreens");
+        this.props.changeLoggedIn;
       })
       .catch((error) => {
         this.setState({ errorMessage: error.message });
       });
-  }
+  };
   changeSecureText() {
     this.setState({ secureText: !this.state.secureText });
   }
@@ -41,7 +45,7 @@ export default class LoginInScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/splashbg.png")}
+          source={require("../assets/splashbg.png")}
           style={styles.headerImage}
           imageStyle={{
             borderRadius: 500,
@@ -55,7 +59,7 @@ export default class LoginInScreen extends React.Component {
             <Image
               animation="bounceIn"
               style={styles.logo}
-              source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/loginScreen.png")}
+              source={require("../assets/loginScreen.png")}
             />
           </Animatable.View>
         </ImageBackground>

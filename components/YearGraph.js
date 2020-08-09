@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import FusionCharts from "react-native-fusioncharts";
-export default class Graph extends Component {
+export default class YearGraph extends Component {
   constructor(props) {
     super(props);
 
@@ -14,7 +14,7 @@ export default class Graph extends Component {
       dataSource: {
         chart: {
           theme: "fusion",
-          xaxisname: "Week",
+          xaxisname: "Years",
           yaxisname: "Steps",
           showvalues: "1",
           formatNumberScale: "0",
@@ -29,67 +29,37 @@ export default class Graph extends Component {
           {
             category: [
               {
-                label: "Mon",
+                label: "2010",
               },
               {
-                label: "Tue",
+                label: "2011",
               },
               {
-                label: "Wed",
+                label: "2012",
               },
               {
-                label: "Thu",
+                label: "2013",
               },
               {
-                label: "Fri",
+                label: "2014",
               },
               {
-                label: "Sat",
+                label: "2015",
               },
               {
-                label: "Sun",
+                label: "2016",
               },
               {
-                label: "Mon",
+                label: "2017",
               },
               {
-                label: "Tue",
+                label: "2018",
               },
               {
-                label: "Wed",
+                label: "2019",
               },
               {
-                label: "Thu",
-              },
-              {
-                label: "Fri",
-              },
-              {
-                label: "Sat",
-              },
-              {
-                label: "Sun",
-              },
-              {
-                label: "Mon",
-              },
-              {
-                label: "Tue",
-              },
-              {
-                label: "Wed",
-              },
-              {
-                label: "Thu",
-              },
-              {
-                label: "Fri",
-              },
-              {
-                label: "Sat",
-              },
-              {
-                label: "Sun",
+                label: "2020",
               },
             ],
           },
@@ -122,43 +92,13 @@ export default class Graph extends Component {
                 value: "500",
               },
               {
-                value: "1000",
+                value: "100",
               },
               {
                 value: "200",
               },
               {
                 value: "230",
-              },
-              {
-                value: "400",
-              },
-              {
-                value: "500",
-              },
-              {
-                value: "2244",
-              },
-              {
-                value: "5000",
-              },
-              {
-                value: "230",
-              },
-              {
-                value: "400",
-              },
-              {
-                value: "500",
-              },
-              {
-                value: "230",
-              },
-              {
-                value: "400",
-              },
-              {
-                value: "500",
               },
             ],
           },

@@ -7,6 +7,7 @@ import {
   Button,
   ImageBackground,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import styled from "styled-components/native";
 import Text from "../styles/Text";
@@ -17,15 +18,16 @@ export default class SplashScreen extends React.Component {
   render() {
     return (
       <ImageBackground
-        source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/splashbg.png")}
+        source={require("../assets/splashbg.png")}
         style={styles.container}
       >
         <SafeAreaView style={styles.container}>
+          <StatusBar barStyle="light-content" />
           <View style={styles.header}>
             <Animatable.Image
               animation="bounceIn"
               style={styles.logo}
-              source={require("/Users/priyadarsimishra/Desktop/React Native Programming/HealthApp/assets/healthlogo.png")}
+              source={require("../assets/healthlogo.png")}
             />
           </View>
           <Animatable.View style={styles.footer} animation="pulse">

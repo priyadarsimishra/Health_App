@@ -7,22 +7,35 @@ import {
 } from "react-native";
 import firebase from "firebase";
 import firestore from "firebase/firestore";
+import { auth, database } from "../Fire";
 import Text from "../styles/Text";
 import colors from "../styles/Colors";
 // now we dont need react native's Text because return a Text
 // component from react native from the method anyways
 
 export default class SignUpScreen extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    password: "",
-    age: "",
-    weight: "",
-    uid: "",
-    errorMessage: "",
-  };
-  saveData = () => {};
+  // state = {
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   age: "",
+  //   weight: "",
+  //   uid: "",
+  //   errorMessage: "",
+  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      age: "",
+      weight: "",
+      uid: "",
+      errorMessage: "",
+    };
+    // this.createUser = this.createUser.bind(this);
+  }
   createUser = () => {
     if (
       this.state.name != "" &&
@@ -36,10 +49,7 @@ export default class SignUpScreen extends React.Component {
           .then((userCredentials) => {
             this.setState({ uid: firebase.auth().currentUser.uid });
             //save the data to firestore
-            let db = firebase
-              .firestore()
-              .collection("users")
-              .doc(this.state.uid);
+            let db = database.collection("users").doc(this.state.uid);
             db.set({
               name: this.state.name,
               age: this.state.age,
@@ -52,7 +62,8 @@ export default class SignUpScreen extends React.Component {
                   displayName: this.state.name,
                 })
                 .then(() => {
-                  this.props.navigation.navigate("AllScreens");
+                  // this.props.navigation.navigate("AllScreens");
+                  this.props.changeLoggedIn;
                 });
             }
           })
