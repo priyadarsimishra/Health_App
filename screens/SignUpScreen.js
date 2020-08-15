@@ -9,7 +9,7 @@ import firebase from "firebase";
 import firestore from "firebase/firestore";
 import { auth, database } from "../Fire";
 import Text from "../styles/Text";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 // now we dont need react native's Text because return a Text
 // component from react native from the method anyways
 
@@ -27,10 +27,12 @@ export default class SignUpScreen extends React.Component {
     super(props);
     this.state = {
       name: "",
+      username: "",
       email: "",
       password: "",
       age: "",
       weight: "",
+      height: "",
       uid: "",
       errorMessage: "",
     };
@@ -38,9 +40,10 @@ export default class SignUpScreen extends React.Component {
   }
   createUser = () => {
     if (
-      this.state.name != "" &&
-      this.state.age != "" &&
-      this.state.weight != ""
+      this.state.name.length != 0 &&
+      this.state.age.length != 0 &&
+      this.state.weight.length != 0 &&
+      this.state.height.length != 0
     ) {
       if (!(parseInt(this.state.age) < 5 || parseInt(this.state.weight) < 10)) {
         firebase
@@ -52,8 +55,14 @@ export default class SignUpScreen extends React.Component {
             let db = database.collection("users").doc(this.state.uid);
             db.set({
               name: this.state.name,
+              username: this.state.username,
               age: this.state.age,
               weight: this.state.weight,
+              height: this.state.height,
+              bio: "",
+              followers: 0,
+              following: 0,
+              posts: 0,
             });
             // Set displayName and navigate the next screen plus
             if (userCredentials.user) {
@@ -100,6 +109,16 @@ export default class SignUpScreen extends React.Component {
         />
         <TextInput
           style={styles.createUsernameInput}
+          placeholder="Enter your username"
+          autoCapitalize="none"
+          onChangeText={(username) => {
+            this.setState({ username: username });
+            this.setState({ errorMessage: "" });
+          }}
+          value={this.state.username}
+        />
+        <TextInput
+          style={styles.createEmailInput}
           placeholder="Choose a Email"
           autoCapitalize="none"
           onChangeText={(email) => {
@@ -118,6 +137,18 @@ export default class SignUpScreen extends React.Component {
             this.setState({ errorMessage: "" });
           }}
           value={this.state.password}
+        />
+        <TextInput
+          style={styles.enterHeightInput}
+          placeholder="Enter Height(cm)"
+          numeric
+          value
+          keyboardType="numeric"
+          onChangeText={(height) => {
+            this.setState({ height: height });
+            this.setState({ errorMessage: "" });
+          }}
+          value={this.state.height}
         />
         <TextInput
           style={styles.enterAgeInput}
@@ -177,6 +208,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#000",
   },
+  createEmailInput: {
+    marginTop: 20,
+    padding: 10,
+    width: 300,
+    borderWidth: 1,
+    borderColor: "#000",
+  },
   createPasswordInput: {
     borderWidth: 1,
     borderColor: "#000",
@@ -189,6 +227,13 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     padding: 10,
     width: 100,
+    marginTop: 20,
+  },
+  enterHeightInput: {
+    borderWidth: 1,
+    borderColor: "#000",
+    padding: 10,
+    width: 140,
     marginTop: 20,
   },
   enterWeightInput: {

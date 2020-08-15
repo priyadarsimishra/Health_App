@@ -1,6 +1,6 @@
-import { WebViewNavigationEvent, OnShouldStartLoadWithRequest } from './WebViewTypes';
+import { OnShouldStartLoadWithRequest, ShouldStartLoadRequestEvent } from './WebViewTypes';
 declare const defaultOriginWhitelist: string[];
-declare const createOnShouldStartLoadWithRequest: (loadRequest: (shouldStart: boolean, url: string, lockIdentifier: number) => void, originWhitelist: readonly string[], onShouldStartLoadWithRequest?: OnShouldStartLoadWithRequest | undefined) => ({ nativeEvent }: WebViewNavigationEvent) => void;
+declare const createOnShouldStartLoadWithRequest: (loadRequest: (shouldStart: boolean, url: string, lockIdentifier: number) => void, originWhitelist: readonly string[], onShouldStartLoadWithRequest?: OnShouldStartLoadWithRequest | undefined) => ({ nativeEvent }: ShouldStartLoadRequestEvent) => void;
 declare const defaultRenderLoading: () => JSX.Element;
 declare const defaultRenderError: (errorDomain: string | undefined, errorCode: number, errorDesc: string) => JSX.Element;
 export { defaultOriginWhitelist, createOnShouldStartLoadWithRequest, defaultRenderLoading, defaultRenderError, };

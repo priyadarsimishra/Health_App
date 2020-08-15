@@ -4,7 +4,7 @@ import ProfileScreen from "./ProfileScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import HomeStackScreen from "./HomeScreenStack";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 
 const Tab = createMaterialBottomTabNavigator();
 export default function MainTabScreen() {
@@ -14,7 +14,7 @@ export default function MainTabScreen() {
       activeTintColor="#fff"
       shifting={true}
       activeColor={colors.white}
-      inactiveColor="#FFEB3B"
+      inactiveColor="#ECF0F1"
       barStyle={{ backgroundColor: colors.red }}
     >
       <Tab.Screen
@@ -22,7 +22,7 @@ export default function MainTabScreen() {
         component={HomeStackScreen}
         options={{
           tabBarLabel: "Home",
-          tabBarColor: colors.red,
+          tabBarColor: "#2980B9",
           tabBarIcon: ({ color }) => (
             <Icon name="ios-home" color={color} size={26} />
           ),
@@ -33,7 +33,7 @@ export default function MainTabScreen() {
         component={ForumScreen}
         options={{
           tabBarLabel: "Forum",
-          tabBarColor: colors.waterBlue,
+          tabBarColor: colors.red,
           tabBarIcon: ({ color }) => (
             <Icon name="ios-notifications" color={color} size={26} />
           ),
@@ -44,7 +44,7 @@ export default function MainTabScreen() {
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
-          tabBarColor: colors.brightOrange,
+          tabBarColor: "#45B39D",
           tabBarIcon: ({ color }) => (
             <Icon name="ios-person" color={color} size={26} />
           ),

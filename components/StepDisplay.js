@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native";
 import Text from "../styles/Text";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 import styled from "styled-components";
 import timeperiod from "../data/timePeriod";
 import WeekGraph from "./WeekGraph";

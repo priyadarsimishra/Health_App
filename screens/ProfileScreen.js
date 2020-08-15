@@ -9,7 +9,7 @@ import {
 import firebase from "firebase";
 import Text from "../styles/Text";
 import styled from "styled-components";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 import { auth, database } from "../Fire";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, Feather } from "@expo/vector-icons";
@@ -20,6 +20,7 @@ export default class ProfileScreen extends React.Component {
     this.state = {
       uid: "",
       name: "",
+      username: "",
       weight: "",
       age: "",
       bio: "",
@@ -58,6 +59,7 @@ export default class ProfileScreen extends React.Component {
         const userData = document.data();
         this.setState({
           name: userData.name,
+          username: userData.username,
           weight: userData.weight,
           age: userData.age,
           posts: userData.posts,
@@ -87,6 +89,9 @@ export default class ProfileScreen extends React.Component {
           <Name large heavy>
             {this.state.name}
           </Name>
+          <Username medium heavy>
+            @{this.state.username}
+          </Username>
           <ProfileStatus>
             <Text style={styles.detailsText} heavy large center>
               Details
@@ -171,6 +176,12 @@ const Name = styled(Text)`
   margin-left: auto;
   margin-right: auto;
   margin-top: 8px;
+`;
+const Username = styled(Text)`
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
 `;
 
 const SignOutButton = styled.TouchableOpacity`

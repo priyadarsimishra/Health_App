@@ -6,27 +6,18 @@ import {
   View,
   Button,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import firebase from "firebase";
 import firestore from "firebase/firestore";
 import Text from "../styles/Text";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 
 export default class HomeScreen extends React.Component {
-  state = {
-    name: "",
-  };
-  constructor() {
-    super();
-    this.setName();
-  }
-  async setName() {
-    username = firebase.auth().currentUser.displayName;
-    this.state = { name: username };
-  }
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="dark-content" />
         <ScrollView>
           <View>
             <Text
@@ -43,7 +34,7 @@ export default class HomeScreen extends React.Component {
             </Text>
             <TouchableOpacity
               style={styles.activityCard}
-              onPress={() => this.props.navigation.navigate("DemoScreen")}
+              onPress={() => this.props.navigation.navigate("ActivityScreen")}
             ></TouchableOpacity>
             <Text
               extralarge
@@ -51,9 +42,12 @@ export default class HomeScreen extends React.Component {
               color={colors.orange}
               style={styles.titleText}
             >
-              Nutrition
+              Life Style
             </Text>
-            <TouchableOpacity style={styles.nutritionCard}></TouchableOpacity>
+            <TouchableOpacity
+              style={styles.nutritionCard}
+              onPress={() => this.props.navigation.navigate("LifeStyleScreen")}
+            ></TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -72,11 +66,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 25,
     marginBottom: -18,
+    letterSpacing: 1,
   },
   activityCard: {
     margin: 20,
-    borderColor: colors.blue,
-    backgroundColor: colors.blue,
+    borderColor: colors.lightBlue,
+    backgroundColor: colors.lightBlue,
     borderWidth: 3,
     height: 350,
     borderRadius: 25,
@@ -87,8 +82,8 @@ const styles = StyleSheet.create({
   },
   nutritionCard: {
     margin: 20,
-    borderColor: colors.orange,
-    backgroundColor: colors.orange,
+    borderColor: colors.lightOrange,
+    backgroundColor: colors.lightOrange,
     borderWidth: 3,
     height: 350,
     borderRadius: 25,

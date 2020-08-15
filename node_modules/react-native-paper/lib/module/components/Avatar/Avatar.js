@@ -1,2 +1,7 @@
-var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:true});Object.defineProperty(exports,"Icon",{enumerable:true,get:function get(){return _AvatarIcon.default;}});Object.defineProperty(exports,"Image",{enumerable:true,get:function get(){return _AvatarImage.default;}});Object.defineProperty(exports,"Text",{enumerable:true,get:function get(){return _AvatarText.default;}});var _AvatarIcon=_interopRequireDefault(require("./AvatarIcon"));var _AvatarImage=_interopRequireDefault(require("./AvatarImage"));var _AvatarText=_interopRequireDefault(require("./AvatarText"));
+// @component ./AvatarIcon.tsx
+export { default as Icon } from './AvatarIcon'; // @component ./AvatarImage.tsx
+
+export { default as Image } from './AvatarImage'; // @component ./AvatarText.tsx
+
+export { default as Text } from './AvatarText';
 //# sourceMappingURL=Avatar.js.map

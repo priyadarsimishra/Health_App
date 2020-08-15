@@ -1,2 +1,9 @@
-var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");var _interopRequireWildcard=require("@babel/runtime/helpers/interopRequireWildcard");Object.defineProperty(exports,"__esModule",{value:true});exports.Consumer=exports.Provider=void 0;var React=_interopRequireWildcard(require("react"));var _MaterialCommunityIcon=_interopRequireDefault(require("../components/MaterialCommunityIcon"));var _React$createContext=React.createContext({icon:_MaterialCommunityIcon.default}),Provider=_React$createContext.Provider,Consumer=_React$createContext.Consumer;exports.Consumer=Consumer;exports.Provider=Provider;
+import * as React from 'react';
+import MaterialCommunityIcon from '../components/MaterialCommunityIcon';
+export const {
+  Provider,
+  Consumer
+} = /*#__PURE__*/React.createContext({
+  icon: MaterialCommunityIcon
+});
 //# sourceMappingURL=settings.js.map

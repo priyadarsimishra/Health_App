@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import Text from "../styles/Text";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 export default class SplashScreen extends React.Component {

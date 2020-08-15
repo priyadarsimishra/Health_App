@@ -12,7 +12,7 @@ import {
 import firebase from "firebase";
 import { auth } from "../Fire";
 import Text from "../styles/Text";
-import colors from "../styles/Colors";
+import colors from "../styles/colors";
 import * as Animatable from "react-native-animatable";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -31,7 +31,6 @@ export default class LoginInScreen extends React.Component {
     auth
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        // this.props.navigation.navigate("AllScreens");
         this.props.changeLoggedIn;
       })
       .catch((error) => {
